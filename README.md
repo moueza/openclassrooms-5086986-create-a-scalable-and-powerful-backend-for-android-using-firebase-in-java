@@ -9,3 +9,9 @@ https://openclassrooms.com/fr/courses/4872916-creez-un-backend-scalable-et-perfo
       
 https://openclassrooms.com/fr/courses/4568746-gerez-vos-donnees-localement-pour-avoir-une-application-100-hors-ligne
 https://openclassrooms.com/fr/courses/4568621-personnalisez-vos-applications
+
+
+Pre-requisites :
+https://openclassrooms.com/fr/courses/4788266-integrate-remote-data-into-your-app
+https://openclassrooms.com/fr/courses/5759911-create-a-flexible-and-adaptive-user-interface-in-android-with-java
+https://openclassrooms.com/fr/courses/4661936-develop-your-first-android-application
