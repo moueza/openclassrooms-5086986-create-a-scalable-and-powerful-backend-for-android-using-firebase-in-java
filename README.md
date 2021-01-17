@@ -1,4 +1,5 @@
 # openclassrooms-5086986-create-a-scalable-and-powerful-backend-for-android-using-firebase-in-java
+Me before : https://github.com/moueza/openclassrooms-4517166-developpez-votre-premiere-application-android
 
 from https://github.com/PhilippeBoisney/OpenClassrooms---Parcours-Android :
 
