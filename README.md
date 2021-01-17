@@ -3,7 +3,7 @@ Me before : 0) = 8) https://github.com/moueza/openclassrooms-4517166-developpez-
 
 Sources : https://github.com/PhilippeBoisney/OpenClassrooms---Parcours-Android :
 
- 1) = 7) https://openclassrooms.com/fr/courses/4568596-construisez-une-interface-utilisateur-flexible-et-adaptative
+ 1) = 7) https://github.com/moueza/openclassrooms-4568596-construisez-une-interface-utilisateur-flexible-et-adaptative
 2) = 6) https://openclassrooms.com/fr/courses/4568576-recuperez-et-affichez-des-donnees-distantes
 
 3) ici https://openclassrooms.com/fr/courses/4872916-creez-un-backend-scalable-et-performant-sur-firebase
