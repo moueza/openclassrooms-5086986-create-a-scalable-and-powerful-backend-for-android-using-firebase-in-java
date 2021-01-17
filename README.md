@@ -14,5 +14,7 @@ Sources : https://github.com/PhilippeBoisney/OpenClassrooms---Parcours-Android :
 
 Pre-requisites :
 6) = 2) https://openclassrooms.com/fr/courses/4788266-integrate-remote-data-into-your-app
+
 7) = 1) https://openclassrooms.com/fr/courses/5759911-create-a-flexible-and-adaptive-user-interface-in-android-with-java
+
 8) = 0) https://openclassrooms.com/fr/courses/4661936-develop-your-first-android-application
