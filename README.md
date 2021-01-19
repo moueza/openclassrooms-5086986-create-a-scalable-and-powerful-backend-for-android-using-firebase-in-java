@@ -9,6 +9,7 @@ https://gitlab.com/moueza/openclassrooms-3499366-developpez-une-application-pour
 
 
 
+
 Sources : https://github.com/PhilippeBoisney/OpenClassrooms---Parcours-Android :
 
  +1)
@@ -25,6 +26,8 @@ https://openclassrooms.com/fr/courses/4568746-gerez-vos-donnees-localement-pour-
 
 +5)
 https://openclassrooms.com/fr/courses/4568621-personnalisez-vos-applications
+
+
 
 
 Pre-requisites :
