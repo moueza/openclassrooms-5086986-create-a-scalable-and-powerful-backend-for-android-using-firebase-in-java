@@ -51,7 +51,9 @@ dependencies {
     //styles.xml attribute 'attr/colorPrimary' not found #18
 //https://stackoverflow.com/questions/63511989/error-style-attribute-attr-colorprimary-not-found
     implementation 'com.android.support:appcompat-v7:27.1.1'
+ //https://stackoverflow.com/questions/42374151/all-com-android-support-libraries-must-use-the-exact-same-version-specification
+    // #21 same version :
     implementation 'com.android.support:support-media-compat:27.1.1'
     implementation 'com.android.support:support-v4:27.1.1'
 }
-//apply plugin: 'com.google.gms.google-services'
+apply plugin: 'com.google.gms.google-services'
