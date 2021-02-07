@@ -69,7 +69,7 @@ dependencies {
 
     }
 
-//Gradle variable
+//Gradle variable https://stackoverflow.com/questions/52566567/resource-style-widget-design-coordinatorlayout-not-found-after-updating-to-api-2/52694508
     implementation "com.android.support:design:$supportLibraryVersion"
 
 
