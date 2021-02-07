@@ -20,6 +20,10 @@ android {
     }
 }
 
+ext {
+    supportLibraryVersion = '27.1.1'
+
+}
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
@@ -42,18 +46,32 @@ dependencies {
     //Firebase
     implementation "com.google.firebase:firebase-core:11.8.0"
     //  implementation platform('com.google.firebase:firebase-bom:26.3.0')
-     //implementation 'com.google.firebase:firebase-analytics'
+    //implementation 'com.google.firebase:firebase-analytics'
     // Add the dependencies for any other desired Firebase products
     // https://firebase.google.com/docs/android/setup#available-libraries
-
 
 
     //styles.xml attribute 'attr/colorPrimary' not found #18
 //https://stackoverflow.com/questions/63511989/error-style-attribute-attr-colorprimary-not-found
     implementation 'com.android.support:appcompat-v7:27.1.1'
- //https://stackoverflow.com/questions/42374151/all-com-android-support-libraries-must-use-the-exact-same-version-specification
+    //https://stackoverflow.com/questions/42374151/all-com-android-support-libraries-must-use-the-exact-same-version-specification
     // #21 same version :
     implementation 'com.android.support:support-media-compat:27.1.1'
     implementation 'com.android.support:support-v4:27.1.1'
+
+
+    // FirebaseUI
+    implementation('com.firebaseui:firebase-ui-auth:3.1.3') {
+        //Firebase-ui duplicate class #27
+        exclude group: 'android.arch.lifecycle', module: 'extensions'
+        exclude group: 'com.android.support', module: 'design'
+
+
+    }
+
+//Gradle variable
+    implementation "com.android.support:design:$supportLibraryVersion"
+
+
 }
 apply plugin: 'com.google.gms.google-services'
