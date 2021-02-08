@@ -4,6 +4,10 @@
 
     <string name="login">Connexion</string>
     <string name="chat_with_mentor">Discute avec un mentor</string>
+    <string name="connection_succeed">connexion reussie</string>
+    <string name="error_authentication_canceled">erreur auth annulee</string>
+    <string name="error_no_internet">pas d internet</string>
+    <string name="error_unknown_error">erreur inconnue</string>
 
     <!-- NOTIFICATION SERVICE -->
 
