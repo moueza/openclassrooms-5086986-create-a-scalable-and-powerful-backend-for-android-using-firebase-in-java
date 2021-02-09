@@ -73,6 +73,7 @@ dependencies {
     implementation "com.android.support:design:$supportLibraryVersion"
 
     // FACEBOOK LOGIN SUPPORT
-    implementation 'com.facebook.android:facebook-android-sdk:[4,5)'
+   implementation 'com.facebook.android:facebook-android-sdk:[4,5)'
+   // implementation 'com.facebook.android:facebook-android-sdk:4.42.0'
 }
 apply plugin: 'com.google.gms.google-services'
