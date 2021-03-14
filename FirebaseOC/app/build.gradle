@@ -72,6 +72,13 @@ dependencies {
 //Gradle variable https://stackoverflow.com/questions/52566567/resource-style-widget-design-coordinatorlayout-not-found-after-updating-to-api-2/52694508
     implementation "com.android.support:design:$supportLibraryVersion"
 
+    // FACEBOOK LOGIN SUPPORT
+    //implementation 'com.facebook.android:facebook-android-sdk:[4,5)'
+    //implementation 'com.facebook.android:facebook-android-sdk:[8,9)'
+    implementation 'com.facebook.android:facebook-android-sdk:[5,6)'
 
+    // implementation 'com.facebook.android:facebook-android-sdk:4.42.0'
+    implementation "com.android.support:cardview-v7:$supportLibraryVersion"
+    implementation "com.android.support:customtabs:$supportLibraryVersion"
 }
 apply plugin: 'com.google.gms.google-services'

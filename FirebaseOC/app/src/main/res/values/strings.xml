@@ -1,4 +1,4 @@
-<resources>
+<resources  xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">FirebaseOC</string>
     <string name="main_activity_description">Discute2 avec tes mentors, tout simplement.</string>
 
@@ -16,4 +16,9 @@
     <!-- LOGIN ACTIVITY -->
 
     <!-- MENTOR_CHAT ACTIVITY -->
+
+    <!-- FACEBOOK PURPOSE -->
+    <string name="facebook_application_id" translatable="false">2901020703464803</string>
+    <string name="facebook_login_protocol_scheme" translatable="false" tools:ignore="UnusedResources">fb2901020703464803</string>
+
 </resources>

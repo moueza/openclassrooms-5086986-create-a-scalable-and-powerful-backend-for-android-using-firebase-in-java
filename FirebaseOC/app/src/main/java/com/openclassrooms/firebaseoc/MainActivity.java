@@ -3,6 +3,7 @@ package com.openclassrooms.firebaseoc;
 import android.content.Intent;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.Snackbar;
+import android.util.Log;
 
 import com.firebase.ui.auth.AuthUI;
 import com.firebase.ui.auth.ErrorCodes;
@@ -49,7 +50,9 @@ public class MainActivity extends BaseActivity {
                         .setTheme(R.style.LoginTheme)
                         .setAvailableProviders(
                                 /**In the latest versions of FirebaseUI, the syntax for adding means of authentication has slightly changed:  AuthUI.IdpConfig.EmailBuilder().build()*/
-                                Arrays.asList(new AuthUI.IdpConfig.Builder(AuthUI.EMAIL_PROVIDER).build()))
+                                Arrays.asList(new AuthUI.IdpConfig.Builder(AuthUI.EMAIL_PROVIDER).build(),
+                                        new AuthUI.IdpConfig.Builder(AuthUI.GOOGLE_PROVIDER).build(),
+                                        new AuthUI.IdpConfig.Builder(AuthUI.FACEBOOK_PROVIDER).build()))
                         .setIsSmartLockEnabled(false, true)
                         .setLogo(R.drawable.ic_logo_auth)
                         .build(),
@@ -92,13 +95,23 @@ public class MainActivity extends BaseActivity {
         if (requestCode == RC_SIGN_IN) {
             if (resultCode == RESULT_OK) { // SUCCESS
                 showSnackBar(this.coordinatorLayout, getString(R.string.connection_succeed));
+                Log.e("MainActivity", "connection_succeed");
             } else { // ERRORS
                 if (response == null) {
                     showSnackBar(this.coordinatorLayout, getString(R.string.error_authentication_canceled));
+                    Log.e("MainActivity", "erh auth annulée");
+
                 } else if (response.getErrorCode() == ErrorCodes.NO_NETWORK) {
                     showSnackBar(this.coordinatorLayout, getString(R.string.error_no_internet));
+                    Log.e("MainActivity", "pas interent");
                 } else if (response.getErrorCode() == ErrorCodes.UNKNOWN_ERROR) {
                     showSnackBar(this.coordinatorLayout, getString(R.string.error_unknown_error));
+                    Log.e("MainActivity", "erh inconnue");
+
+                } else {
+
+                    Log.e("MainActivity", "autre erh");
+
                 }
             }
         }
