@@ -21,6 +21,10 @@ import butterknife.OnClick;
 
 public class ProfileActivity extends BaseActivity {
 
+    //FOR DATA
+    // 2 - Identify each Http Request
+    private static final int SIGN_OUT_TASK = 10;
+    private static final int DELETE_USER_TASK = 20;
     //FOR DESIGN
     @BindView(R.id.profile_activity_imageview_profile)
     ImageView imageViewProfile;
@@ -30,17 +34,6 @@ public class ProfileActivity extends BaseActivity {
     TextView textViewEmail;
     @BindView(R.id.profile_activity_progress_bar)
     ProgressBar progressBar;
-
-
-
-
-
-
-    //FOR DATA
-    // 2 - Identify each Http Request
-    private static final int SIGN_OUT_TASK = 10;
-    private static final int DELETE_USER_TASK = 20;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,17 +57,14 @@ public class ProfileActivity extends BaseActivity {
     }
 
 
-
-
-
     // --------------------
     // UI
     // --------------------
 
     // 1 - Update UI when activity is creating
-    private void updateUIWhenCreating(){
+    private void updateUIWhenCreating() {
 
-        if (this.getCurrentUser() != null){
+        if (this.getCurrentUser() != null) {
 
             //Get picture URL from Firebase
             if (this.getCurrentUser().getPhotoUrl() != null) {
@@ -95,17 +85,18 @@ public class ProfileActivity extends BaseActivity {
     }
 
 
-
     //+++++++++++++++++++++
 
-            // --------------------
-            // ACTIONS
-            // --------------------
+    // --------------------
+    // ACTIONS
+    // --------------------
 
-     // 4 - Adding requests to button listeners
+    // 4 - Adding requests to button listeners
 
     @OnClick(R.id.profile_activity_button_sign_out)
-    public void onClickSignOutButton() { this.signOutUserFromFirebase(); }
+    public void onClickSignOutButton() {
+        this.signOutUserFromFirebase();
+    }
 
     @OnClick(R.id.profile_activity_button_delete)
     public void onClickDeleteButton() {
@@ -126,13 +117,13 @@ public class ProfileActivity extends BaseActivity {
     // --------------------
     // 1 - Create http requests (SignOut & Delete)
 
-    private void signOutUserFromFirebase(){
+    private void signOutUserFromFirebase() {
         AuthUI.getInstance()
                 .signOut(this)
                 .addOnSuccessListener(this, this.updateUIAfterRESTRequestsCompleted(SIGN_OUT_TASK));
     }
 
-    private void deleteUserFromFirebase(){
+    private void deleteUserFromFirebase() {
         if (this.getCurrentUser() != null) {
             AuthUI.getInstance()
                     .delete(this)
@@ -145,13 +136,12 @@ public class ProfileActivity extends BaseActivity {
     // --------------------
 
 
-
     // 3 - Create OnCompleteListener called after tasks ended
-    private OnSuccessListener<Void> updateUIAfterRESTRequestsCompleted(final int origin){
+    private OnSuccessListener<Void> updateUIAfterRESTRequestsCompleted(final int origin) {
         return new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void aVoid) {
-                switch (origin){
+                switch (origin) {
                     case SIGN_OUT_TASK:
                         finish();
                         break;
