@@ -1,13 +1,18 @@
 package com.openclassrooms.firebaseoc;
 
 import android.content.Intent;
+import android.support.annotation.Nullable;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.Snackbar;
 import android.util.Log;
+import android.widget.Button;
 
 import com.firebase.ui.auth.AuthUI;
 import com.firebase.ui.auth.ErrorCodes;
 import com.firebase.ui.auth.IdpResponse;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.openclassrooms.firebaseoc.auth.ProfileActivity;
 import com.openclassrooms.firebaseoc.base.BaseActivity;
 
 import java.util.Arrays;
@@ -17,6 +22,10 @@ import butterknife.OnClick;
 
 
 public class MainActivity extends BaseActivity {
+
+    // 1 - Getting Login Button
+    @BindView(R.id.main_activity_button_login)
+    Button buttonLogin;
 
     @Override
     public int getFragmentLayout() {
@@ -31,11 +40,6 @@ public class MainActivity extends BaseActivity {
     // ACTIONS
     // --------------------
 
-    @OnClick(R.id.main_activity_button_login)
-    public void onClickLoginButton() {
-        // 3 - Launch Sign-In Activity when user clicked on Login Button
-        this.startSignInActivity();
-    }
 
 
     // --------------------
@@ -116,4 +120,51 @@ public class MainActivity extends BaseActivity {
             }
         }
     }
+
+//---------------------------------
+
+
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        // 5 - Update UI when activity is resuming
+        this.updateUIWhenResuming();
+    }
+
+
+    @OnClick(R.id.main_activity_button_login)
+    public void onClickLoginButton() {
+        // 4 - Start appropriate activity
+        if (this.isCurrentUserLogged()){
+            this.startProfileActivity();
+        } else {
+            this.startSignInActivity();
+        }
+    }
+
+
+
+            // --------------------
+            // NAVIGATION
+            // --------------------
+
+
+    // 3 - Launching Profile Activity
+    private void startProfileActivity(){
+        Intent intent = new Intent(this, ProfileActivity.class);
+        startActivity(intent);
+    }
+
+    // --------------------
+    // UI
+    // --------------------
+
+
+
+    // 2 - Update UI when activity is resuming
+    private void updateUIWhenResuming(){
+        this.buttonLogin.setText(this.isCurrentUserLogged() ? getString(R.string.button_login_text_logged) : getString(R.string.button_login_text_not_logged));
+    }
+
 }
