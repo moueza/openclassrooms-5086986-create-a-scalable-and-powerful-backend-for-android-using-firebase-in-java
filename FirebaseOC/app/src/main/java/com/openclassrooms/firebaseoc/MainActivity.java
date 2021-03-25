@@ -12,6 +12,7 @@ import com.firebase.ui.auth.ErrorCodes;
 import com.firebase.ui.auth.IdpResponse;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.openclassrooms.firebaseoc.api.UserHelper;
 import com.openclassrooms.firebaseoc.auth.ProfileActivity;
 import com.openclassrooms.firebaseoc.base.BaseActivity;
 
@@ -91,36 +92,6 @@ public class MainActivity extends BaseActivity {
     // UTILS
     // --------------------
 
-    // 3 - Method that handles response after SignIn Activity close
-    private void handleResponseAfterSignIn(int requestCode, int resultCode, Intent data) {
-
-        IdpResponse response = IdpResponse.fromResultIntent(data);
-
-        if (requestCode == RC_SIGN_IN) {
-            if (resultCode == RESULT_OK) { // SUCCESS
-                showSnackBar(this.coordinatorLayout, getString(R.string.connection_succeed));
-                Log.e("MainActivity", "connection_succeed");
-            } else { // ERRORS
-                if (response == null) {
-                    showSnackBar(this.coordinatorLayout, getString(R.string.error_authentication_canceled));
-                    Log.e("MainActivity", "erh auth annulée");
-
-                } else if (response.getErrorCode() == ErrorCodes.NO_NETWORK) {
-                    showSnackBar(this.coordinatorLayout, getString(R.string.error_no_internet));
-                    Log.e("MainActivity", "pas interent");
-                } else if (response.getErrorCode() == ErrorCodes.UNKNOWN_ERROR) {
-                    showSnackBar(this.coordinatorLayout, getString(R.string.error_unknown_error));
-                    Log.e("MainActivity", "erh inconnue");
-
-                } else {
-
-                    Log.e("MainActivity", "autre erh");
-
-                }
-            }
-        }
-    }
-
 //---------------------------------
 
 
@@ -166,5 +137,41 @@ public class MainActivity extends BaseActivity {
     private void updateUIWhenResuming(){
         this.buttonLogin.setText(this.isCurrentUserLogged() ? getString(R.string.button_login_text_logged) : getString(R.string.button_login_text_not_logged));
     }
+/************************************************************/
 
+
+
+    // --------------------
+    // REST REQUEST
+    // --------------------
+
+    // 1 - Http request that create user in firestore
+    private void createUserInFirestore(){
+
+        if (this.getCurrentUser() != null){
+
+            String urlPicture = (this.getCurrentUser().getPhotoUrl() != null) ? this.getCurrentUser().getPhotoUrl().toString() : null;
+            String username = this.getCurrentUser().getDisplayName();
+            String uid = this.getCurrentUser().getUid();
+
+            UserHelper.createUser(uid, username, urlPicture).addOnFailureListener(this.onFailureListener());
+        }
+    }
+
+
+
+    private void handleResponseAfterSignIn(int requestCode, int resultCode, Intent data){
+
+
+
+        if (requestCode == RC_SIGN_IN) {
+            if (resultCode == RESULT_OK) { // SUCCESS
+                // 2 - CREATE USER IN FIRESTORE
+                this.createUserInFirestore();
+                showSnackBar(this.coordinatorLayout, getString(R.string.connection_succeed));
+            } else { // ERRORS
+
+            }
+        }
+    }
 }

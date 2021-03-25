@@ -63,10 +63,9 @@ dependencies {
     // FirebaseUI
     implementation('com.firebaseui:firebase-ui-auth:3.1.3') {
         //Firebase-ui duplicate class #27
-        exclude group: 'android.arch.lifecycle', module: 'extensions'
+        //exclude tomcat https://stackoverflow.com/questions/21764128/how-do-i-exclude-all-instances-of-a-transitive-dependency-when-using-gradle
+        //exclude group: 'android.arch.lifecycle', module: 'extensions'
         exclude group: 'com.android.support', module: 'design'
-
-
     }
 
 //Gradle variable https://stackoverflow.com/questions/52566567/resource-style-widget-design-coordinatorlayout-not-found-after-updating-to-api-2/52694508
@@ -82,5 +81,22 @@ dependencies {
     implementation "com.android.support:customtabs:$supportLibraryVersion"
 
     implementation 'com.firebaseui:firebase-ui-firestore:3.1.3'
+
+
+    //https://discuss.gradle.org/t/how-do-i-exclude-specific-transitive-dependencies-of-something-i-depend-on/17991/8
+    //def noSupport = {
+    //    exclude group: 'android.arch.lifecycle', module: 'extensions'
+
+    //}
+}
+
+//exclude gradle multiple occurrences https://stackoverflow.com/questions/21764128/how-do-i-exclude-all-instances-of-a-transitive-dependency-when-using-gradle
+
+configurations {
+
+   runtime.exclude   group: 'android.arch.lifecycle', module: 'extensions'
+    compile.exclude   group: 'android.arch.lifecycle', module: 'extensions'
+
+
 }
 apply plugin: 'com.google.gms.google-services'
