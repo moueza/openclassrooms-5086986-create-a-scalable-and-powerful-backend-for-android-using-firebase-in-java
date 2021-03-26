@@ -15,6 +15,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.openclassrooms.firebaseoc.api.UserHelper;
 import com.openclassrooms.firebaseoc.auth.ProfileActivity;
 import com.openclassrooms.firebaseoc.base.BaseActivity;
+import com.openclassrooms.firebaseoc.mentor_chat.MentorChatActivity;
 
 import java.util.Arrays;
 
@@ -24,28 +25,41 @@ import butterknife.OnClick;
 
 public class MainActivity extends BaseActivity {
 
-    // 1 - Getting Login Button
-    @BindView(R.id.main_activity_button_login)
-    Button buttonLogin;
-
-    @Override
-    public int getFragmentLayout() {
-        return R.layout.activity_main;
-    }
-
     //FOR DATA
     // 1 - Identifier for Sign-In Activity
     private static final int RC_SIGN_IN = 123;
+    // 1 - Getting Login Button
+    @BindView(R.id.main_activity_button_login)
+    Button buttonLogin;
+    //FOR DESIGN
+    // 1 - Get Coordinator Layout
+    @BindView(R.id.main_activity_coordinator_layout)
+    CoordinatorLayout coordinatorLayout;
 
     // --------------------
     // ACTIONS
     // --------------------
 
-
+    @Override
+    public int getFragmentLayout() {
+        return R.layout.activity_main;
+    }
+ 
 
     // --------------------
     // NAVIGATION
     // --------------------
+
+    /*.....*/
+    @OnClick(R.id.main_activity_button_chat)
+    public void onClickChatButton() {
+        // 2 - Check if user is connected before launching MentorActivity lbl2fjbj
+        if (this.isCurrentUserLogged()) {
+            this.startMentorChatActivity();
+        } else {
+            this.showSnackBar(this.coordinatorLayout, getString(R.string.error_not_connected));
+        }
+    }
 
     // 2 - Launch Sign-In Activity
     private void startSignInActivity() {
@@ -64,12 +78,11 @@ public class MainActivity extends BaseActivity {
                 RC_SIGN_IN);
     }
 
-
-    //FOR DESIGN
-    // 1 - Get Coordinator Layout
-    @BindView(R.id.main_activity_coordinator_layout)
-    CoordinatorLayout coordinatorLayout;
-
+    // 1 - Starting Mentor Activity lbl1fjbj
+    private void startMentorChatActivity() {
+        Intent intent = new Intent(this, MentorChatActivity.class);
+        startActivity(intent);
+    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -95,7 +108,6 @@ public class MainActivity extends BaseActivity {
 //---------------------------------
 
 
-
     @Override
     protected void onResume() {
         super.onResume();
@@ -107,7 +119,7 @@ public class MainActivity extends BaseActivity {
     @OnClick(R.id.main_activity_button_login)
     public void onClickLoginButton() {
         // 4 - Start appropriate activity
-        if (this.isCurrentUserLogged()){
+        if (this.isCurrentUserLogged()) {
             this.startProfileActivity();
         } else {
             this.startSignInActivity();
@@ -115,14 +127,13 @@ public class MainActivity extends BaseActivity {
     }
 
 
-
-            // --------------------
-            // NAVIGATION
-            // --------------------
+    // --------------------
+    // NAVIGATION
+    // --------------------
 
 
     // 3 - Launching Profile Activity
-    private void startProfileActivity(){
+    private void startProfileActivity() {
         Intent intent = new Intent(this, ProfileActivity.class);
         startActivity(intent);
     }
@@ -132,13 +143,12 @@ public class MainActivity extends BaseActivity {
     // --------------------
 
 
-
     // 2 - Update UI when activity is resuming
-    private void updateUIWhenResuming(){
+    private void updateUIWhenResuming() {
         this.buttonLogin.setText(this.isCurrentUserLogged() ? getString(R.string.button_login_text_logged) : getString(R.string.button_login_text_not_logged));
     }
-/************************************************************/
 
+    /************************************************************/
 
 
     // --------------------
@@ -146,9 +156,9 @@ public class MainActivity extends BaseActivity {
     // --------------------
 
     // 1 - Http request that create user in firestore
-    private void createUserInFirestore(){
+    private void createUserInFirestore() {
 
-        if (this.getCurrentUser() != null){
+        if (this.getCurrentUser() != null) {
 
             String urlPicture = (this.getCurrentUser().getPhotoUrl() != null) ? this.getCurrentUser().getPhotoUrl().toString() : null;
             String username = this.getCurrentUser().getDisplayName();
@@ -159,9 +169,7 @@ public class MainActivity extends BaseActivity {
     }
 
 
-
-    private void handleResponseAfterSignIn(int requestCode, int resultCode, Intent data){
-
+    private void handleResponseAfterSignIn(int requestCode, int resultCode, Intent data) {
 
 
         if (requestCode == RC_SIGN_IN) {
