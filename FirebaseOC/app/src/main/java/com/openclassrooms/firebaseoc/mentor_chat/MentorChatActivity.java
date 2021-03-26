@@ -1,18 +1,48 @@
 package com.openclassrooms.firebaseoc.mentor_chat;
 
+import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.support.design.widget.TextInputEditText;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.view.View;
+import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+import com.bumptech.glide.Glide;
+import com.firebase.ui.firestore.FirestoreRecyclerOptions;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.Query;
+import com.openclassrooms.firebaseoc.R;
+import com.openclassrooms.firebaseoc.api.MessageHelper;
+import com.openclassrooms.firebaseoc.api.UserHelper;
+import com.openclassrooms.firebaseoc.base.BaseActivity;
+import com.openclassrooms.firebaseoc.models.Message;
+import com.openclassrooms.firebaseoc.models.User;
+
+import butterknife.BindView;
+import butterknife.OnClick;
+
 public class MentorChatActivity extends BaseActivity implements MentorChatAdapter.Listener {
 
     // FOR DESIGN
     // 1 - Getting all views needed
-    @BindView(R.id.activity_mentor_chat_recycler_view) RecyclerView recyclerView;
-    @BindView(R.id.activity_mentor_chat_text_view_recycler_view_empty) TextView textViewRecyclerViewEmpty;
-    @BindView(R.id.activity_mentor_chat_message_edit_text) TextInputEditText editTextMessage;
-    @BindView(R.id.activity_mentor_chat_image_chosen_preview) ImageView imageViewPreview;
+    @BindView(R.id.activity_mentor_chat_recycler_view)
+    RecyclerView recyclerView;
+    @BindView(R.id.activity_mentor_chat_text_view_recycler_view_empty)
+    TextView textViewRecyclerViewEmpty;
+    @BindView(R.id.activity_mentor_chat_message_edit_text)
+    TextInputEditText editTextMessage;
+    @BindView(R.id.activity_mentor_chat_image_chosen_preview)
+    ImageView imageViewPreview;
 
     // FOR DATA
     // 2 - Declaring Adapter and data
     private MentorChatAdapter mentorChatAdapter;
-    @Nullable private User modelCurrentUser;
+    @Nullable
+    private User modelCurrentUser;
     private String currentChatName;
 
     // STATIC DATA FOR CHAT (3)

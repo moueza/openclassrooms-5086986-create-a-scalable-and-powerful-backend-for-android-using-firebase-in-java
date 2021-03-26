@@ -44,7 +44,7 @@ public class MainActivity extends BaseActivity {
     public int getFragmentLayout() {
         return R.layout.activity_main;
     }
- 
+
 
     // --------------------
     // NAVIGATION
