@@ -30,13 +30,19 @@ public class ProfileActivity extends BaseActivity {
     // 2 - Identify each Http Request
     private static final int SIGN_OUT_TASK = 10;
     private static final int DELETE_USER_TASK = 20;
+
+
     //FOR DESIGN
+
     @BindView(R.id.profile_activity_imageview_profile)
     ImageView imageViewProfile;
+
     @BindView(R.id.profile_activity_edit_text_username)
     TextInputEditText textInputEditTextUsername;
+
     @BindView(R.id.profile_activity_text_view_email)
     TextView textViewEmail;
+
     @BindView(R.id.profile_activity_progress_bar)
     ProgressBar progressBar;
 
